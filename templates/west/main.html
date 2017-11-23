@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>JACK'S CECRET STORE</title>
+    {% load  static %}
+    <link rel="icon" href={% static "image/logo.ico" %}  type="img/x-ico"/>
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={% static "/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    {#    font-awesome CSS#}
+    <link href={% static "/vendor/font-awesome/css/font-awesome.min.css" %} rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        .nav-pills {
+            background-color: pink;
+        }
+
+        #iframeMapping {
+            height: 90%;
+            width: 100%;
+        {#            width:100%;#}
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        //Funs
+        $(document).ready(function () {
+            $('#Funs').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/templay/');
+            });
+        });
+
+        $(document).ready(function () {
+            $('#Bdanmaku2pic').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/Bdanmaku2pic/');
+            });
+        });
+
+    </script>
+</head>
+<body>
+{#<p>带有下拉菜单的胶囊</p>#}
+<div>
+    <ul class="nav nav-pills" border:5px solid blue;>
+        <li class="active"><a href="#">Home</a></li>
+        <li id="Funs"><a href="#">Funs</a></li>
+        <li id="Study"><a href="#">Study</a></li>
+        <li id="Project"><a href="#">Project</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Article <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li id="Bdanmaku2pic"><a href="#">Article1</a> </li>
+                <li><a href="#">Article2</a></li>
+                <li><a href="#">Article3</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Article4</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<iframe id="iframeMapping" src="" frameborder="0"></iframe>
+
+</body>
+</html>
