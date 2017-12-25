@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'users/register/',views.register),
     url(r'main/',views.main),
     url(r'Bdanmaku2pic/',views.Bdanmaku2pic),
+    url(r'pdf2String/',views.pdf2String),
 
 ]

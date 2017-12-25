@@ -34,8 +34,8 @@
     <script type="text/javascript">
         //Funs
         $(document).ready(function () {
-            $('#Funs').bind('click', function () {
-                $('#iframeMapping').attr('src', '/west/templay/');
+            $('#pdf2String').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/pdf2String/');
             });
         });
 
@@ -48,29 +48,46 @@
     </script>
 </head>
 <body>
+
 {#<p>带有下拉菜单的胶囊</p>#}
 <div>
     <ul class="nav nav-pills" border:5px solid blue;>
         <li class="active"><a href="#">Home</a></li>
-        <li id="Funs"><a href="#">Funs</a></li>
-        <li id="Study"><a href="#">Study</a></li>
-        <li id="Project"><a href="#">Project</a></li>
+        <li id="Projects" class="dropdown"><a href="#">Projects</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Article <span class="caret"></span>
+                Functions <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li id="Bdanmaku2pic"><a href="#">Article1</a> </li>
-                <li><a href="#">Article2</a></li>
-                <li><a href="#">Article3</a></li>
+                <li id="pdf2String"><a href="#">pdf转文本</a></li>
+                <li><a href="#">To be continued</a></li>
+                <li><a href="#">To be continued</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Article4</a></li>
+                <li><a href="#">To be continued</a></li>
             </ul>
         </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Funs <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li id="Bdanmaku2pic"><a href="#">B站弹幕转云图</a></li>
+                <li><a href="#">To be continued</a></li>
+                <li><a href="#">To be continued</a></li>
+                <li class="divider"></li>
+                <li><a href="#">To be continued</a></li>
+            </ul>
+        </li>
+        <li id="Others"><a href="#">Others</a></li>
     </ul>
 </div>
 
 <iframe id="iframeMapping" src="" frameborder="0"></iframe>
+
+<div class="panel-footer" style="text-align: center">
+    Contact Me:xhxu_vip@sina.com    TEL：17717879601    Copyright &copy; 2017 Jack. All Rights Free.
+</div>
+
 
 </body>
 </html>

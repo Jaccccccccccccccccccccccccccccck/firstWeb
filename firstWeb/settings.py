@@ -25,7 +25,7 @@ SECRET_KEY = 'b($4ctoeqi*ntn#te!i&i9n@6hi=(qcbvhd#f$jvxm*sh0pssq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'firstWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my_schema',
+        'NAME': 'firstWeb',
         'USER': 'Main',
         'PASSWORD': 'qwertasdfg',
         'HOST':'localhost',
-        'PORT':'3307',
+        'PORT':'3306',
     }
 }
 

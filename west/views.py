@@ -122,7 +122,8 @@ def Bdanmaku2pic(request):
 
             cuttext = ''
             for d in ds:
-                cuttext = cuttext + ' ' + str(d.text);
+                if(len(str(d.text))<=10):
+                    cuttext = cuttext + ' ' + str(d.text);
             print(cuttext)
             # 初始化词云
             cloud = WordCloud(
@@ -148,3 +149,70 @@ def Bdanmaku2pic(request):
 
     else:
         return render(request, 'Bdanmaku2pic.html')
+
+
+def pdf2String(request):
+    if request.method == 'POST':
+        print("pdf2String start!")
+        myFile = request.FILES.get("pdf2trans", None)  # 获取上传的文件，如果没有文件，则默认为None
+        print(myFile)
+        transfered_str = '文件转换失败'
+        if not myFile:
+            return render(request, 'pdf2String.html', {'transfered_str': transfered_str})
+        try:
+            transfered_str = '';
+            from pdfminer.pdfparser import PDFParser, PDFDocument
+            from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+            from pdfminer.converter import PDFPageAggregator
+            from pdfminer.layout import LTTextBoxHorizontal, LAParams
+            from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
+            praser = PDFParser(myFile)
+            # 创建一个PDF文档
+            doc = PDFDocument()
+            # 连接分析器 与文档对象
+            praser.set_document(doc)
+            doc.set_parser(praser)
+            # 提供初始化密码
+            # 如果没有密码 就创建一个空的字符串
+            doc.initialize()
+            # 检测文档是否提供txt转换，不提供就忽略
+            if not doc.is_extractable:
+                raise PDFTextExtractionNotAllowed
+            else:
+                # 创建PDf 资源管理器 来管理共享资源
+                rsrcmgr = PDFResourceManager()
+                # 创建一个PDF设备对象
+                laparams = LAParams()
+                device = PDFPageAggregator(rsrcmgr, laparams=laparams)
+                # 创建一个PDF解释器对象
+                interpreter = PDFPageInterpreter(rsrcmgr, device)
+
+                # 循环遍历列表，每次处理一个page的内容
+                for page in doc.get_pages():  # doc.get_pages() 获取page列表
+                    interpreter.process_page(page)
+                    # 接受该页面的LTPage对象
+                    layout = device.get_result()
+                    # 这里layout是一个LTPage对象 里面存放着 这个page解析出的各种对象 一般包括LTTextBox, LTFigure, LTImage, LTTextBoxHorizontal 等等 想要获取文本就获得对象的text属性，
+                    for x in layout:
+                        if (isinstance(x, LTTextBoxHorizontal)):
+                            with open(r'1.txt', 'a') as f:
+                                results = x.get_text()
+                                # print(results)
+                                transfered_str = transfered_str + results;
+                                f.write(results + '\n')
+            #得到文字后进一步的处理
+            # re.sub(r'\r\n\s','许相虎',transfered_str)
+            print("before change: \n" + transfered_str)
+            transfered_str = re.sub(r'\n\s', '许相虎', transfered_str)
+            transfered_str = re.sub(r'\s\n', '许相虎', transfered_str)
+            print("after change: \n" + transfered_str)
+            transfered_str = re.sub(r'\n|\r', '', transfered_str)
+            transfered_str = re.sub(r'许相虎', '\n', transfered_str)
+            transfered_str = re.sub(r'\s{4,}', '\n', transfered_str)
+            print("finally: \n" + transfered_str)
+
+            return render(request, 'pdf2String.html', {'transfered_str': transfered_str})
+        except:
+            return render(request, 'pdf2String.html', {'transfered_str': transfered_str})
+    else:
+        return render(request, 'pdf2String.html')
