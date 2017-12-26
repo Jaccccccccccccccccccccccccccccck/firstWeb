@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    {% load  static %}
+    <link rel="icon" href={% static "image/logo.ico" %}  type="img/x-ico"/>
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={% static "/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    {#    font-awesome CSS#}
+    <link href={% static "/vendor/font-awesome/css/font-awesome.min.css" %} rel="stylesheet">
+
+
+</head>
+<body>
+<br/>
+
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <div class="row">
+                    <div>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">IP地址查询</a>
+                    </div>
+                </div>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>本地ip</td>
+                            <td>
+                                {% if my_ip %}
+                                    {{ my_ip }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>地理位置</td>
+                            <td>
+                                {% if my_location %}
+                                    {{ my_location }}
+                                {% else %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-7" style="color:red;text-align: left">
+                        若返回多个IP地址，说明访问时走了代理。
+                    </div>
+                </div>
+
+{#                <div class="row">#}
+{#                    <div class="col-lg-3 col-md-3 col-sm-3">#}
+{#                        <label class="label label-default">本地IP：</label>#}
+{#                    </div>#}
+{#                    <div class="col-lg-7 col-md-7 col-sm-7">#}
+{#                        <label class="label label-primary">{% if my_ip %}#}
+{#                               {{ my_ip }}#}
+{#                            {% else %}#}
+{##}
+{#                            {% endif %}</label>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col-lg-3 col-md-3 col-sm-3">#}
+{#                        <label class="label label-default">地理位置：</label>#}
+{#                    </div>#}
+{#                    <div class="col-lg-7 col-md-7 col-sm-7">#}
+{#                        <label class="label label-primary">{% if my_location %}#}
+{#                               {{ my_location }}#}
+{#                            {% else %}#}
+{##}
+{#                            {% endif %}</label>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+
+
+                <label>
+
+                </label>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

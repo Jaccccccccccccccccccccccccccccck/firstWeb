@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'main/',views.main),
     url(r'Bdanmaku2pic/',views.Bdanmaku2pic),
     url(r'pdf2String/',views.pdf2String),
+    url(r'ip/',views.ip),
 
 ]

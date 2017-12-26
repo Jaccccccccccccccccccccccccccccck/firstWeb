@@ -2,9 +2,9 @@
 <html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>JACK'S CECRET STORE</title>
+    <title>JACK'S SECRET STORE</title>
     {% load  static %}
-    <link rel="icon" href={% static "image/logo.ico" %}  type="img/x-ico"/>
+    <link rel="icon" href={% static "image/J2.ico" %}  type="img/x-ico"/>
     <!-- Bootstrap Core JavaScript -->
     <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
     <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
@@ -32,13 +32,19 @@
     </style>
 
     <script type="text/javascript">
-        //Funs
+        //Funcs
+        $(document).ready(function () {
+            $('#ip').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/ip/');
+            });
+        });
         $(document).ready(function () {
             $('#pdf2String').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/pdf2String/');
             });
         });
 
+        //Funs
         $(document).ready(function () {
             $('#Bdanmaku2pic').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/Bdanmaku2pic/');
@@ -53,15 +59,13 @@
 <div>
     <ul class="nav nav-pills" border:5px solid blue;>
         <li class="active"><a href="#">Home</a></li>
-        <li id="Projects" class="dropdown"><a href="#">Projects</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 Functions <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                <li id="ip"><a href="#">IP查询</a></li>
                 <li id="pdf2String"><a href="#">pdf转文本</a></li>
-                <li><a href="#">To be continued</a></li>
-                <li><a href="#">To be continued</a></li>
                 <li class="divider"></li>
                 <li><a href="#">To be continued</a></li>
             </ul>
@@ -72,13 +76,20 @@
             </a>
             <ul class="dropdown-menu">
                 <li id="Bdanmaku2pic"><a href="#">B站弹幕转云图</a></li>
-                <li><a href="#">To be continued</a></li>
-                <li><a href="#">To be continued</a></li>
                 <li class="divider"></li>
                 <li><a href="#">To be continued</a></li>
             </ul>
         </li>
-        <li id="Others"><a href="#">Others</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Others <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li id="Bdanmaku2pic"><a href="#">Pron</a></li>
+                <li class="divider"></li>
+                <li><a href="#">To be continued</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 

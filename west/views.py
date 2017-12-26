@@ -195,11 +195,10 @@ def pdf2String(request):
                     # 这里layout是一个LTPage对象 里面存放着 这个page解析出的各种对象 一般包括LTTextBox, LTFigure, LTImage, LTTextBoxHorizontal 等等 想要获取文本就获得对象的text属性，
                     for x in layout:
                         if (isinstance(x, LTTextBoxHorizontal)):
-                            with open(r'1.txt', 'a') as f:
-                                results = x.get_text()
-                                # print(results)
-                                transfered_str = transfered_str + results;
-                                f.write(results + '\n')
+                            results = x.get_text()
+                            # print(results)
+                            transfered_str = transfered_str + results;
+
             #得到文字后进一步的处理
             # re.sub(r'\r\n\s','许相虎',transfered_str)
             print("before change: \n" + transfered_str)
@@ -216,3 +215,31 @@ def pdf2String(request):
             return render(request, 'pdf2String.html', {'transfered_str': transfered_str})
     else:
         return render(request, 'pdf2String.html')
+
+def ip(request):
+    if request.META.get('HTTP_X_FORWARDED_FOR'):
+        print("here")
+        my_ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        print("there")
+        my_ip = request.META['REMOTE_ADDR']
+    my_ip = str(my_ip).split(',')
+    my_location = []
+    try:
+        import requests
+        from bs4 import BeautifulSoup
+        from lxml import etree
+        for ips in my_ip:
+            url = "http://www.ip.cn/index.php?ip="+ips.strip()
+            print(url)
+            re = requests.get(url)
+            html = etree.HTML(re.text)
+            node = html.xpath('//*[@id="result"]/div/p[2]/code');
+            for nodes in node:
+                my_location.append(nodes.text);
+        print(my_location)
+        return render(request, 'ip.html', {"my_ip": my_ip,"my_location":my_location})
+    except:
+        print("except")
+        return render(request, 'ip.html', {"my_ip": my_ip})
+    return render(request, 'ip.html',{"my_ip":my_ip})

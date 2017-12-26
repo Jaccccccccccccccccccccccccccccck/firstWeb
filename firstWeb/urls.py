@@ -22,5 +22,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.user_login),
     url(r'^west/', include('west.urls')),
-    # url(r'^static/(?P<path>.*)$', 'django.views.static.server', {'document_root': settings.STATIC_ROOT})
 ]
