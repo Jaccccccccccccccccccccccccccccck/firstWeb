@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>JACK'S SECRET STORE</title>
     {% load  static %}
-    <link rel="icon" href={% static "image/J2.ico" %}  type="img/x-ico"/>
+    <link rel="icon" href={% static "image/J.ico" %}  type="img/x-ico"/>
     <!-- Bootstrap Core JavaScript -->
     <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
     <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
@@ -32,23 +32,31 @@
     </style>
 
     <script type="text/javascript">
-        //Funcs
+
         $(document).ready(function () {
+            //Funcs
             $('#ip').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/ip/');
             });
-        });
-        $(document).ready(function () {
             $('#pdf2String').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/pdf2String/');
             });
-        });
-
-        //Funs
-        $(document).ready(function () {
+            //Funs
             $('#Bdanmaku2pic').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/Bdanmaku2pic/');
             });
+            //Others
+            $('#porn').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/porn/');
+            });
+        });
+        $(document).ready(function () {
+
+        });
+
+
+        $(document).ready(function () {
+
         });
 
     </script>
@@ -85,7 +93,7 @@
                 Others <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li id="Bdanmaku2pic"><a href="#">Pron</a></li>
+                <li id="porn"><a href="#">Pron</a></li>
                 <li class="divider"></li>
                 <li><a href="#">To be continued</a></li>
             </ul>
