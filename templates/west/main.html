@@ -38,6 +38,9 @@
             $('#ip').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/ip/');
             });
+            $('#requestInfo').bind('click', function () {
+                $('#iframeMapping').attr('src', '/west/request_info/');
+            });
             $('#pdf2String').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/pdf2String/');
             });
@@ -45,10 +48,10 @@
             $('#Bdanmaku2pic').bind('click', function () {
                 $('#iframeMapping').attr('src', '/west/Bdanmaku2pic/');
             });
-            //Others
-            $('#porn').bind('click', function () {
-                $('#iframeMapping').attr('src', '/west/porn/');
-            });
+            //Others porn功能下线
+{#            $('#porn').bind('click', function () {#}
+{#                $('#iframeMapping').attr('src', '/west/porn/');#}
+{#            });#}
         });
         $(document).ready(function () {
 
@@ -73,6 +76,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li id="ip"><a href="#">IP查询</a></li>
+                <li id="requestInfo"><a href="#">请求详情</a></li>
                 <li id="pdf2String"><a href="#">pdf转文本</a></li>
                 <li class="divider"></li>
                 <li><a href="#">To be continued</a></li>
@@ -93,7 +97,7 @@
                 Others <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li id="porn"><a href="#">Pron</a></li>
+                <li id="porn"><a href="#">Porn</a></li>
                 <li class="divider"></li>
                 <li><a href="#">To be continued</a></li>
             </ul>

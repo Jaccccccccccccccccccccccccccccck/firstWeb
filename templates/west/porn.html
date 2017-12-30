@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    {% load  static %}
+    <link rel="icon" href={% static "image/logo.ico" %}  type="img/x-ico"/>
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={% static "/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    {#    font-awesome CSS#}
+    <link href={% static "/vendor/font-awesome/css/font-awesome.min.css" %} rel="stylesheet">
+
+
+</head>
+<body>
+<br/>
+
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <div class="row">
+                    <div>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">porn tops(点击view后请等待几秒钟)</a>
+                    </div>
+                </div>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table">
+                    <tbody>
+{#                        <thead>#}
+{#                            <td>title</td>#}
+{#                            <td>img</td>#}
+{#                            <td>times</td>#}
+{#                        </thead>#}
+
+
+
+{#                        {% if porn_list %}#}
+{#                            {% for list in porn_list %}#}
+{#                                <tr>#}
+{#                                    {% for key,value in list.items %}#}
+{#                                        <td>#}
+{#                                            {{ value }}#}
+{#                                        </td>#}
+{#                                    {% endfor %}#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{##}
+{#                        {% else %}#}
+{#                        {% endif %}#}
+
+                            {% for list in porn_list %}
+                                <tr>
+                                    {% for key,value in list.items %}
+                                        <td>
+                                            {% if key == 'img_url' %}
+                                                <img src={{ value }}>
+                                                {% elif key == 'video_url' %}
+                                                <a  value={{ value }}>View</a>
+                                                {% else %}
+                                                {{ value }}
+                                            {% endif %}
+
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+
+
+                    </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("a").click(function(){
+                var bef_url = $(this).attr("value")
+                var tempwindow=window.open(bef_url);
+                tempwindow
+{#                tempwindow.document.title = "Please wait for seconds."#}
+{#                var bef_url = $(this).attr("value")#}
+{##}
+{#            $.get("/west/porn/get_file_url?bef_url="+bef_url,async=false, function(ret){#}
+{#                tempwindow.location = ret#}
+{#                })#}
+            });
+        });
+
+    </script>
+
+</body>
+</html>

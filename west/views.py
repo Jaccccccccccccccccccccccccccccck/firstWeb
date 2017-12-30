@@ -240,6 +240,69 @@ def ip(request):
         print(my_location)
         return render(request, 'ip.html', {"my_ip": my_ip,"my_location":my_location})
     except:
-        print("except")
         return render(request, 'ip.html', {"my_ip": my_ip})
     return render(request, 'ip.html',{"my_ip":my_ip})
+
+
+def porn(request):
+    try:
+        porn_list =[]
+        import requests
+        from lxml import etree
+        from time import time
+
+        url = "http://www.pornfreex.us"
+        print(url)
+        re = requests.get(url)
+        html = etree.HTML(re.text)
+
+        # location_soup = BeautifulSoup(re.text,'html')
+        # print(location_soup.prettify())
+        tops = html.xpath('//*[@id="content"]/div[1]/div[2]/div/ul[3]/li');
+
+        for top in tops:
+            relate_url = top.xpath('a[1]/@href')
+
+            # video_url = url+relate_url[0]
+            # driver = webdriver.PhantomJS()
+            # driver.get(video_url)  # 此处url填写需要访问的地址
+            # file_url = driver.find_element_by_xpath('//*[@id="html5"]').get_attribute('src')
+
+            title = top.xpath('a[2]/@title')
+            img_url = top.xpath('a[1]/img/@src')
+            times = top.xpath('a[1]/span[2]/text()')
+            relate_url = top.xpath('a[1]/@href')
+            video_url = url + relate_url[0]
+            # print(file_url)
+            porn_dict = {"title":title[0],"img_url":img_url[0],"times":times[0],"video_url":video_url}
+            porn_list.append(porn_dict)
+
+        return render(request, 'porn.html', {"porn_list": porn_list})
+    except Exception:
+        print(Exception)
+        return render(request, 'porn.html', {"porn_list": porn_list})
+
+
+def get_file_url(request):
+    bef_url = request.GET.get('bef_url')
+    try:
+        import requests
+        from lxml import etree
+        from time import time
+        from selenium import webdriver
+
+        driver = webdriver.PhantomJS()
+        driver.get(bef_url)  # 此处url填写需要访问的地址
+        file_url = driver.find_element_by_xpath('//*[@id="html5"]').get_attribute('src')
+
+        return HttpResponse(file_url)
+    except Exception:
+        return HttpResponse(status=404)
+
+def request_info(request):
+    # from django.core.handlers.wsgi import WSGIRequest
+    # print(type(request))
+    print(request.environ)
+    request_detail = request.environ
+    print(type(request_detail))
+    return render(request,'request_info.html',{'request_detail':request_detail})
