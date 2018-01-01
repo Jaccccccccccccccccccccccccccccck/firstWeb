@@ -300,9 +300,69 @@ def get_file_url(request):
         return HttpResponse(status=404)
 
 def request_info(request):
+    if request.method == 'GET':
     # from django.core.handlers.wsgi import WSGIRequest
     # print(type(request))
-    print(request.environ)
-    request_detail = request.environ
-    print(type(request_detail))
-    return render(request,'request_info.html',{'request_detail':request_detail})
+    # print(request.environ)
+        request_detail = request.META
+        print(type(request_detail))
+        print(request_detail)
+        return render(request,'request_info.html',{'request_detail':request_detail})
+    else :
+        request_post_uid = request.POST.get('uid')
+        return request_post_uid['uid']
+
+def one(request):
+    try:
+        import requests
+        from lxml import etree
+        import re
+
+        url = "http://www.wufazhuce.com/"
+        res = requests.get(url)
+        html = etree.HTML(res.text)
+        # //*[@id="carousel-one"]/div/div[1]/a/img
+        # //*[@id="carousel-one"]/div/div[1]/div[2]/div[2]/a
+        # //*[@id="main-container"]/div[1]/div[2]/div/div/div[1]/div/p[2]/a
+        # //*[@id="main-container"]/div[1]/div[2]/div/div/div[2]/div/p[2]/a
+        # one图片
+        pic = html.xpath('//*[@id="carousel-one"]/div/div[1]/a/img/@src')
+
+        # one句子
+        notes = html.xpath('//*[@id="carousel-one"]/div/div[1]/div[2]/div[2]/a/text()')
+        for note in notes:
+            note = re.sub(r'\r\n','',note)
+        # one文章
+        article_url = html.xpath('//*[@id="main-container"]/div[1]/div[2]/div/div/div[1]/div/p[2]/a/@href')
+        article_author = html.xpath('//*[@id="main-container"]/div[1]/div[2]/div/div/div[1]/div/p[2]/a/small/text()')
+        article_title = html.xpath('//*[@id="main-container"]/div[1]/div[2]/div/div/div[1]/div/p[2]/a/text()')
+
+        # one问题
+        question_url = html.xpath('//*[@id="main-container"]/div[1]/div[2]/div/div/div[2]/div/p[2]/a/@href')
+        question_title = html.xpath('//*[@id="main-container"]/div[1]/div[2]/div/div/div[2]/div/p[2]/a/text()')
+
+        # print(pic[0])
+        # print(oneSentence)
+        # print(article_title[0].strip())
+        # print(article_author[0])
+        # print(article_url[0])
+        # print(question_title[0].strip())
+        # print(question_url[0])
+
+        one_dict = {
+            'pic': pic[0],
+            'article_title': article_title[0].strip(),
+            'article_author': article_author[0],
+            'article_url': article_url[0],
+            'question_title': question_title[0].strip(),
+            'question_url': question_url[0]
+        }
+        print(one_dict)
+        print(notes)
+        return render(request, 'one.html', {'one_dict': one_dict,'notes':notes})
+    except Exception as e :
+        print(e)
+        return render(request, 'one.html')
+
+
+

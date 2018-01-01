@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'porn/$',views.porn),
     url(r'porn/get_file_url$',views.get_file_url),
     url(r'request_info/$',views.request_info),
+    url(r'one/$',views.one),
 
 ]

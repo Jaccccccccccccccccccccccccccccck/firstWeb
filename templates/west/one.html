@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    {% load  static %}
+    <link rel="icon" href={% static "image/logo.ico" %}  type="img/x-ico"/>
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static "/vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href={% static "/vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+    {#    font-awesome CSS#}
+    <link href={% static "/vendor/font-awesome/css/font-awesome.min.css" %} rel="stylesheet">
+
+
+</head>
+{% load dict_fun %}
+<body>
+    <br/>
+    <br/>
+    <div  align="center">
+        <div class=" col-lg-6 col-md-6 col-sm-6">
+            <div class="row" align="right">
+                <img src={{ one_dict|dict_get:"pic" }}>
+            </div>
+        </div>
+
+        <div class=" col-lg-3 col-md-3 col-sm-3">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div id="firHeader" class="row" >
+                {% for word in notes %}
+                    <span >
+                        {{ word }}
+                    </span>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                今日文章：
+                <a href={{ one_dict|dict_get:"article_url" }}>
+                    {{ one_dict|dict_get:"article_title" }}
+                    {{ one_dict|dict_get:"article_author" }}
+                </a>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="row">
+                今日问题：
+                <a href={{ one_dict|dict_get:"question_url" }}>
+                    {{ one_dict|dict_get:"question_title" }}
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>
